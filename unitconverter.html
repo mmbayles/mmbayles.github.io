@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+	#main_header {
+		background-color: orange;
+        /*white-space: nowrap;*/
+        height: 100px;
+        overflow:hidden;
+        /*overflow-x: auto;*/
+        /*overflow-y: hidden;*/
+	}
+    #main_header div {
+        display: inline-block;
+        width:75%;
+        align:left;
+        text-align: center;
+        vertical-align: middle;
+
+    }
+    #main_header h3{
+        padding-top: 3%;
+    }
+     #main_header img{
+         width:100px;
+    display: inline-block;
+         float:right;
+         overflow: auto;
+
+    }
+        #container{
+            background-color: lightblue;
+            height: 100vh;
+
+        }
+        #more_info{
+            width:50%;
+            background-color: lightpink;
+            float:right;
+            height:100vh;
+            padding: 2%;
+        }
+        #main_conversion{width:50%;
+            float:left;
+            padding: 2%;
+        }
+
+  </style>
+    <title>Convert Basic Units</title>
+  </head>
+  <body>
+
+  <div id = "container">
+      <div id = 'main_header' style ="float:top;  width:100%;">
+        <div id = 'title'><h3>Welcome to the Bayles Unit Converter</h3></div>
+          <img  src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/tools-256.png"></image>
+      </div>
+      <div id = "main_conversion">
+          <div id = "data_entry">
+              <h5>Please enter a numerical value:</h5>
+              <hr>
+              <input id = "txt_value">
+          </div>
+
+           <div class="dropdown">
+               <hr>
+               <h5>From Unit:</h5>
+            <button  class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Inches<span class = "caret"></span></button >
+                <div id = "input_unit_sel" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#">Inches</a>
+                    <a class="dropdown-item" href="#">Feet</a>
+                    <a class="dropdown-item" href="#">Yards</a>
+                    <a class="dropdown-item" href="#">Miles</a>
+                    <a class="dropdown-item" href="#">Meters</a>
+                    <a class="dropdown-item" href="#">Kilometers</a>
+                </div>
+            </div>
+           <div class="dropdown">
+               <hr>
+               <h5>To Unit:</h5>
+           <button class="btn btn-secondary dropdown-toggle" href="#" role="button" id="output_menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feet<span class = "caret"></span></button>
+                    <div id = "output_unit_sel" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">Inches</a>
+                        <a class="dropdown-item" href="#">Feet</a>
+                        <a class="dropdown-item" href="#">Yards</a>
+                        <a class="dropdown-item" href="#">Miles</a>
+                        <a class="dropdown-item" href="#">Meters</a>
+                        <a class="dropdown-item" href="#">Kilometers</a>
+                    </div>
+            </div>
+          <p></p>
+          <hr>
+           <div ><h6 id = 'txt_output'></h6></div>
+          <ul>
+			<li><a target="_blank" href="https://en.wikipedia.org/wiki/Conversion_of_units">Source Code</a></li>
+            </ul>
+	</div>
+      <div id = 'more_info'>
+          <h6>More conversion tools</h6>
+          <hr>
+          <ul>
+
+			<li><a target="_blank" href="http://www.unit-conversion.info/pressure.html#data">Pressure Unit Conversion</a></li>
+			<li><a target="_blank" href="http://www.unit-conversion.info/metric.html#data">Metric Unit Conversion</a></li>
+
+			<li><a target="_blank" href="http://www.unit-conversion.info/area.html#data">Area Unit Converter</a></li>
+
+			<li><a target="_blank" href="http://www.unit-conversion.info/weight.html#data">Weight Unit Conversion</a></li>
+
+			<li><a target="_blank" href="http://www.unit-conversion.info/texttools/ascii/#data">ASCII to text Converter</a></li>
+						</ul>
+          <hr>
+          <ul>
+			<li><a target="_blank" href="https://en.wikipedia.org/wiki/Conversion_of_units">Learn morea about unit conversion</a></li>
+            </ul>
+      </div>
+  </div>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+
+
+            $('#txt_value').bind('input',function(){
+                var value = $(this).val();
+                console.log(value)
+                convert_unit(value)
+
+            })
+            $("#input_unit_sel a").click(function(e){
+                e.preventDefault()
+                var selText = $(this).text();
+                $("#dropdownMenuLink").text("")
+                $("#dropdownMenuLink").append(selText+"<span class = 'caret'></span>")
+                var value =$('#txt_value').val();
+                convert_unit(value)
+            })
+
+            $("#output_unit_sel a").click(function(e){
+                e.preventDefault()
+                var selText = $(this).text();
+                $("#output_menu").text("")
+                $("#output_menu").append(selText+"<span class = 'caret'></span>")
+                var value =$('#txt_value').val();
+                convert_unit(value)
+            })
+
+        })
+        function convert_unit(value){
+            console.log(value)
+            var first_conv	=[1,12,36,63360,39.3700787,39370.0787]
+            var second_conv = [1,0.0833333,0.0277777,0.000015782828,0.0254,0.0000254]
+            var input_unit = $("#dropdownMenuLink").text()
+            var ouput_unit = $("#output_menu").text()
+            var unit_list = ['Inches','Feet','Yards','Miles','Meters','Kilometers']
+            var input_index = null
+            var output_index = null
+            var converted = null
+            for (unit in unit_list){
+
+                if(input_unit == unit_list[unit]){
+                    input_index = unit
+                }
+                if(ouput_unit == unit_list[unit]){
+                    output_index = unit
+                }
+            }
+            var all_in = value * first_conv[input_index]
+            converted = all_in * second_conv[output_index]
+//            console.log(unit_list)
+            if (isNaN(converted)){
+
+                $("#txt_output").html("Please input a number.")
+            }
+            else{
+
+                $("#txt_output").html(converted.toFixed(6)+" "+unit_list[output_index])
+            }
+        }
+    </script>
+  </body>
+</html>
