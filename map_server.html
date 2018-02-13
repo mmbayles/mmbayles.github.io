@@ -14,9 +14,9 @@
       height: 100%;
       width: 100%;
     }
-	#map_controls {
-		background-color: grey;
-	}
+	#map_controls{
+	background-color: grey;
+	
 	
   </style>
 
@@ -27,17 +27,25 @@
   <script>
     require([
       "esri/views/MapView",
-	  "esri/layers/MapImageLayer",
-      "esri/WebMap",
+      "esri/Map",
+      "esri/layers/MapImageLayer",
       "dojo/domReady!"
     ], function(
-      MapView, WebMap, MapImageLayer
+      MapView, Map, MapImageLayer
     ) {
 
-		var map = new Map({
+      /************************************************************
+       * Creates a new WebMap instance. A WebMap must reference
+       * a PortalItem ID that represents a WebMap saved to
+       * arcgis.com or an on-premise portal.
+       *
+       * To load a WebMap from an on-premise portal, set the portal
+       * url with esriConfig.portalUrl.
+       ************************************************************/
+      var map = new Map({
 		basemap: "streets"
 		});
-        var layer1 = new MapImageLayer({
+		 var layer1 = new MapImageLayer({
             url: "http://geoserver2.byu.edu/arcgis/rest/services/TeamWon/utah_raster/MapServer"
         });
 		var layer2 = new MapImageLayer({
@@ -46,10 +54,14 @@
 		map.layers.add(layer1);
 		map.layers.add(layer2);
 
+      /************************************************************
+       * Set the WebMap instance to the map property in a MapView.
+       ************************************************************/
       var view = new MapView({
         map: map,
         container: "viewDiv",
-		zoom:6
+		center: [-111.5,40.5],
+		zoom:8
       });
     });
   </script>
@@ -60,7 +72,6 @@
 		
 		
 			<div id = "map_controls" style="float:left; height:100vh; width:25%;">
-
 			<h3>Map Controls</h3>
 			<hr>
 	
