@@ -25,13 +25,16 @@
   <script src="https://js.arcgis.com/4.6/"></script>
 
   <script>
+  
     require([
       "esri/views/MapView",
       "esri/Map",
       "esri/layers/MapImageLayer",
+	  "esri/layers/FeatureLayer",
+	  "dojo/on",
       "dojo/domReady!"
     ], function(
-      MapView, Map, MapImageLayer
+      MapView, Map, MapImageLayer, FeatureLayer, on
     ) {
 
       /************************************************************
@@ -42,21 +45,39 @@
        * To load a WebMap from an on-premise portal, set the portal
        * url with esriConfig.portalUrl.
        ************************************************************/
+	   
       var map = new Map({
 		basemap: "streets"
 		});
-		 var layer1 = new MapImageLayer({
+		  
+		 
+		
+		layer1 = new MapImageLayer({
             url: "http://geoserver2.byu.edu/arcgis/rest/services/TeamWon/utah_raster/MapServer"
         });
-		var layer2 = new MapImageLayer({
-            url: "http://geoserver2.byu.edu/arcgis/rest/services/TeamWon/FoodLocations/MapServer"
+		featureLayer = new FeatureLayer({
+            url: "http://geoserver2.byu.edu/arcgis/rest/services/TeamWon/feature_food/FeatureServer/",
         });
+		
 		map.layers.add(layer1);
-		map.layers.add(layer2);
+		map.layers.add(featureLayer);
+		
+			leg_dem = document.getElementById("legend_dem")
+			leg_rest = document.getElementById("legend_rest")
 
-      /************************************************************
-       * Set the WebMap instance to the map property in a MapView.
-       ************************************************************/
+
+			on(leg_dem, "change" , function(){
+				layer1.visible = leg_dem.checked
+			})
+			on(leg_rest, "change" , function(){
+				featureLayer.visible = leg_rest.checked
+			})
+
+		var template = {
+		  title: "Restaurant Name: {Field1}"
+		};
+		featureLayer.popupTemplate = template;
+
       var view = new MapView({
         map: map,
         container: "viewDiv",
@@ -85,18 +106,26 @@
 			  <input type="checkbox" name="vehicle" value="Car" checked>UTA Buses<br>
 			  <input type="checkbox" name="vehicle" value="Car" checked>Walking<br>
 			  <input type="checkbox" name="vehicle" value="Car" checked>Sponsered Reduced Fare<br>
+			  
 			  <p></p>
 			  <input type="submit" value="End Location">
 			  <p></p>
 			  <hr>
 		<input type="submit" value="Get Routes">
-		<p></p>
-		<p></p>
+		
+		<hr>
+		<h3>Map Legend</h3>
+		<input type = "checkbox" id = "legend_rest" checked>Restaurants<br>
+		<input type="checkbox" id = "legend_dem" checked>DEM<br>
 		<p></p>
 		<p></p>
 		<hr>
 		<input type="submit" value="Introduction">
 		<input type="submit" value="Help">
+		<hr>
+		<h4>Map Project</h4>
+		<div>Created by Matthew Bayles</div>
+		2/12/2018
 		</div>
 		
 		<div id="viewDiv" style="float:right; height:100vh; width:75%;"></div>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Intro to layers - 4.6</title>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.6/"></script>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    #layerToggle {
+      top: 20px;
+      right: 20px;
+      position: absolute;
+      z-index: 99;
+      background-color: white;
+      border-radius: 8px;
+      padding: 10px;
+      opacity: 0.75;
+    }
+  </style>
+
+  <script>
+    require([
+        "esri/Map",
+        "esri/views/SceneView",
+        "esri/layers/TileLayer",
+		
+        "dojo/dom",
+        "dojo/on",
+		"esri/layers/FeatureLayer",
+        "dojo/domReady!"
+      ],
+      function(
+        Map, SceneView, TileLayer, dom, on, FeatureLayer
+      ) {
+		
+  
+		elevation_layer = new TileLayer({
+            url: "http://geoserver2.byu.edu/arcgis/rest/services/TeamWon/utah_raster/MapServer"
+        });
+		housingLyr = new FeatureLayer({
+            url: "http://geoserver2.byu.edu/arcgis/rest/services/TeamWon/feature_food/FeatureServer/"
+        });
+        var map = new Map({
+          basemap: "oceans",
+          layers: [housingLyr,elevation_layer]
+        });
+		/* map.ground.layers.add(elevation_layer) */
+        var view = new SceneView({
+          container: "viewDiv",
+          map: map
+        });
+        view.when(function() {
+          housingLyr.when(function() {
+            view.goTo(housingLyr.fullExtent);
+          });
+        });
+
+
+      });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+  <span id="layerToggle">
+    <input type="checkbox" id="streetsLyr"> Transportation
+  </span>
+</body>
+
+</html>
